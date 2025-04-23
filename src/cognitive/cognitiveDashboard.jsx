@@ -14,6 +14,11 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Nav from "./Nav";
+import Dashboard from "./Dashboard";
+import Tests from "./Tests";
+import Patients from "./Patients";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function CognitiveDashboard() {
   const [activeTab, setActiveTab] = useState("Overview");
@@ -37,18 +42,31 @@ export default function CognitiveDashboard() {
   return (
     <div className="flex h-screen">
       <aside className="w-64 bg-gray-900 text-white p-6">
-        <h2 className="text-2xl font-bold mb-6">Tracker</h2>
-        <nav className="space-y-3">
-          <a href="#" className="block hover:text-gray-300">
-            Dashboard
-          </a>
-          <a href="#" className="block hover:text-gray-300">
-            Tests
-          </a>
-          <a href="#" className="block hover:text-gray-300">
-            Patients
-          </a>
-        </nav>
+        <Router>
+          <div className="space-x-3">
+            <Nav />
+            <Routes>
+              <Route
+              className={({ isActive }) =>
+                isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
+              } path="/" exact component={Dashboard} />
+              <Route
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
+                }
+                path="/tests"
+                component={Tests}
+              />
+              <Route
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
+                }
+                path="/patients"
+                component={Patients}
+              />
+            </Routes>
+          </div>
+        </Router>
       </aside>
 
       <main className="flex-1 p-8 bg-gray-50 overflow-y-auto">
