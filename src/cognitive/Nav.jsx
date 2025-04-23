@@ -7,10 +7,12 @@ export default function Nav() {
     <div className="navbar">
       <h2 className="text-2xl font-bold mb-6">Tracker</h2>
       <ul className="nav-links">
-      <NavLink
+        <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
+            `block px-4 py-2 rounded hover:bg-gray-200 ${
+              isActive ? "bg-blue-500 text-white" : "text-gray-700"
+            }`
           }
         >
           Dashboard
@@ -18,7 +20,9 @@ export default function Nav() {
         <NavLink
           to="/tests"
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
+            `block px-4 py-2 rounded hover:bg-gray-200 ${
+              isActive ? "bg-blue-500 text-white" : "text-gray-700"
+            }`
           }
         >
           Tests
@@ -26,7 +30,9 @@ export default function Nav() {
         <NavLink
           to="/patients"
           className={({ isActive }) =>
-            isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
+            `block px-4 py-2 rounded hover:bg-gray-200 ${
+              isActive ? "bg-blue-500 text-white" : "text-gray-700"
+            }`
           }
         >
           Patients

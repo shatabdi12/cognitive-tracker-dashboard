@@ -43,27 +43,12 @@ export default function CognitiveDashboard() {
     <div className="flex h-screen">
       <aside className="w-64 bg-gray-900 text-white p-6">
         <Router>
-          <div className="space-x-3">
-            <Nav />
+            <Nav className="flex flex-col space-y-2 p-4 w-48 bg-gray-100 h-screen"/>
+            <div className="flex-1 p-4 hidden">
             <Routes>
-              <Route
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
-              } path="/" exact component={Dashboard} />
-              <Route
-                className={({ isActive }) =>
-                  isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
-                }
-                path="/tests"
-                component={Tests}
-              />
-              <Route
-                className={({ isActive }) =>
-                  isActive ? "text-blue-500 font-bold" : "hover:text-gray-300"
-                }
-                path="/patients"
-                component={Patients}
-              />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/tests" element={<Tests />} />
+              <Route path="/patients" element={<Patients />} />
             </Routes>
           </div>
         </Router>
