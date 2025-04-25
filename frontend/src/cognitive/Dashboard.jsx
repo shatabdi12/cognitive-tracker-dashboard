@@ -9,15 +9,41 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { gql, useQuery } from '@apollo/client';
+
+const GET_SCORES = gql`
+  query GetScores {
+    scores {
+      id
+      score
+      date
+    }
+  }
+`;
 
 export default function Dashboard() {
-  const lineData = [
-    { date: "Mon", score: 72 },
-    { date: "Tue", score: 85 },
-    { date: "Wed", score: 78 },
-    { date: "Thu", score: 90 },
-    { date: "Fri", score: 80 },
-  ];
+  const { loading, error, data } = useQuery(GET_SCORES);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const scores = data.scores;
+  const lineData = scores.map((score) => ({
+    date: score.date,
+    score: score.score,
+  }));
+  
+  // const lineData = [
+  //   { date: "Mon", score: 72 },
+  //   { date: "Tue", score: 85 },
+  //   { date: "Wed", score: 78 },
+  //   { date: "Thu", score: 90 },
+  //   { date: "Fri", score: 80 },
+  // ];
+
+   // Example: Assuming the first score object has properties like 'score' and 'date'
+  //  const lineData = scores.map((score) => ({ date: score.date, score: score.score }));
+
 
   return <>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -25,11 +51,11 @@ export default function Dashboard() {
             <h3 className="text-xl font-semibold text-gray-600">
               📊 Avg Score
             </h3>
-            <p className="text-4xl font-bold mt-2">82</p>
+            <p className="text-4xl font-bold mt-2">{scores.length > 0 ? scores[0].score : "Loading..."}</p>
             <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
               <div
                 className="bg-blue-500 h-3 rounded-full"
-                style={{ width: "82%" }}
+                style={{ width: `${scores.length > 0 ? scores[0].score : 0}%` }}
               ></div>
             </div>
           </div>
