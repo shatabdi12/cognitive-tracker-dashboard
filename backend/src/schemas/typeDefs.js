@@ -14,7 +14,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addScore(score: Float!, date: String!): Score
+    addScore(score: Int!, date: String!): Score
   }
 `;
 

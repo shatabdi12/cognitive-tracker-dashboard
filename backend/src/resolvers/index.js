@@ -1,6 +1,6 @@
 //# Resolver functions to handle requests
 
-const scores = [];  // Temporary in-memory data
+let scores = [];  // Temporary in-memory data
 
 const resolvers = {
   Query: {
@@ -8,7 +8,11 @@ const resolvers = {
   },
   Mutation: {
     addScore: (_, { score, date }) => {
-      const newScore = { id: scores.length + 1, score, date };
+      const newScore = {
+        id: String(scores.length + 1),
+        score,
+        date,
+      };
       scores.push(newScore);
       return newScore;
     },

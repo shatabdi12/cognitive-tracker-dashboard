@@ -11,7 +11,7 @@ const resolvers = require("./resolvers");
 async function startServer() {
   const app = express();
 
-  app.use(cors()); // Allow cross-origin requests
+  app.use('/graphql',cors()); // Allow cross-origin requests
 
   const server = new ApolloServer({
     typeDefs,
