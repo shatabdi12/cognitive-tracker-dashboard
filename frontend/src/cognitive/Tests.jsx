@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { useState } from 'react';
 
 const ADD_SCORE = gql`
@@ -12,9 +12,21 @@ const ADD_SCORE = gql`
   }
 `;
 
+const GET_SCORES = gql`
+  query GetScores {
+    scores {
+      id
+      score
+      date
+    }
+  }
+`;
+
 export default function Tests() {
   const [formData, setFormData] = useState({ score: '', date: '' });
   const [addScore] = useMutation(ADD_SCORE);
+  const { data, loading, error } = useQuery(GET_SCORES);
+
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -45,12 +57,17 @@ export default function Tests() {
   <>
     <div className="bg-white p-6 rounded-2xl shadow mb-8">
       <h2 className="text-2xl font-semibold mb-4">📅 Test History</h2>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error loading scores</p>}
       <ul className="divide-y divide-gray-200">
-        <li className="py-2">Test 1 - 82</li>
-        <li className="py-2">Test 2 - 90</li>
-        <li className="py-2">Test 3 - 76</li>
+        {data?.scores.map((score) => (
+          <li key={score.id} className="py-2">
+            Test {score.id} - {score.score}
+          </li>
+        ))}
       </ul>
     </div>
+
 
     <div className="bg-white p-6 rounded-2xl shadow">
           <h2 className="text-2xl font-bold mb-6">➕ Add New Score</h2>
