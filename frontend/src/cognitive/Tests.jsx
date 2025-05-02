@@ -1,6 +1,46 @@
 import React from "react";
+import { gql, useMutation } from '@apollo/client';
+import { useState } from 'react';
+
+const ADD_SCORE = gql`
+  mutation AddScore($score: Int!, $date: String!) {
+    addScore(score: $score, date: $date) {
+      id
+      score
+      date
+    }
+  }
+`;
 
 export default function Tests() {
+  const [formData, setFormData] = useState({ score: '', date: '' });
+  const [addScore] = useMutation(ADD_SCORE);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { score, date } = formData;
+    try {
+      await addScore({
+        variables: {
+          score: parseInt(score),
+          date,
+        },
+      });
+      alert('Score added!');
+      setFormData({ score: '', date: '' });
+    } catch (err) {
+      console.error('Error adding score:', err);
+    }
+  };
+  
+
   return (
   <>
     <div className="bg-white p-6 rounded-2xl shadow mb-8">
@@ -14,7 +54,7 @@ export default function Tests() {
 
     <div className="bg-white p-6 rounded-2xl shadow">
           <h2 className="text-2xl font-bold mb-6">➕ Add New Score</h2>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-medium mb-1">
                 Score
@@ -22,6 +62,9 @@ export default function Tests() {
               <input
                 type="number"
                 name="score"
+                value={formData.score}
+                onChange={handleChange}
+
                 className="w-full border border-gray-300 px-4 py-2 rounded-lg"
               />
             </div>
@@ -32,6 +75,8 @@ export default function Tests() {
               <input
                 type="date"
                 name="date"
+                value={formData.date}
+                onChange={handleChange}
                 className="w-full border border-gray-300 px-4 py-2 rounded-lg"
               />
             </div>
