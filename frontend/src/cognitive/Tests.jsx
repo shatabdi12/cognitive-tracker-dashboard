@@ -8,6 +8,14 @@ const ADD_SCORE = gql`
       id
       score
       date
+    } 
+  }
+`;
+
+const DELETE_SCORE = gql`
+  mutation DeleteScore($id: ID!) {
+    deleteScore(id: $id) {
+      id
     }
   }
 `;
@@ -26,6 +34,10 @@ export default function Tests() {
   const [formData, setFormData] = useState({ score: '', date: '' });
   const [addScore] = useMutation(ADD_SCORE);
   const { data, loading, error } = useQuery(GET_SCORES);
+
+  const [deleteScore] = useMutation(DELETE_SCORE, {
+    refetchQueries: ["GetScores"], // Optional: ensures UI updates
+  });
 
 
   const handleChange = (e) => {
@@ -61,8 +73,16 @@ export default function Tests() {
       {error && <p>Error loading scores</p>}
       <ul className="divide-y divide-gray-200">
         {data?.scores.map((score) => (
-          <li key={score.id} className="py-2">
-            Test {score.id} - {score.score}
+          <li key={score.id} className="py-2 flex justify-between items-center">
+            <span>
+              Test {score.id} - {score.score}
+            </span>
+            <button
+              onClick={() => deleteScore({ variables: { id: score.id } })}
+              className="text-red-500 hover:underline text-sm"
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

@@ -15,6 +15,7 @@ const typeDefs = gql`
 
   type Mutation {
     addScore(score: Int!, date: String!): Score
+    deleteScore(id: ID!): Score
   }
 `;
 

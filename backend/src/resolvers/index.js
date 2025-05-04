@@ -1,6 +1,6 @@
 //# Resolver functions to handle requests
 
-let scores = [];  // Temporary in-memory data
+const scores = [];  // Temporary in-memory data
 
 const resolvers = {
   Query: {
@@ -16,6 +16,12 @@ const resolvers = {
       scores.push(newScore);
       return newScore;
     },
+    deleteScore: (_, { id }) => {
+      const index = scores.findIndex((score) => score.id === id);
+      if (index === -1) return null;
+      const deleted = scores.splice(index, 1)[0];
+      return deleted;
+    }    
   },
 };
 
