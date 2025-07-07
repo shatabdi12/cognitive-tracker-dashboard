@@ -1,6 +1,7 @@
 //# Resolver functions to handle requests
 
 const scores = [];  // Temporary in-memory data
+let nextId = scores.length + 1;
 
 const resolvers = {
   Query: {
@@ -9,7 +10,7 @@ const resolvers = {
   Mutation: {
     addScore: (_, { score, date }) => {
       const newScore = {
-        id: String(scores.length + 1),
+        id: String(nextId++),
         score,
         date,
       };
