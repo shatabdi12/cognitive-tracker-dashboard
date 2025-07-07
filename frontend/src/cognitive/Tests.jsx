@@ -32,11 +32,32 @@ const GET_SCORES = gql`
 
 export default function Tests() {
   const [formData, setFormData] = useState({ score: '', date: '' });
-  const [addScore] = useMutation(ADD_SCORE);
+  const [addScore] = useMutation(ADD_SCORE, {
+    update(cache, {data: { addScore }} ) {
+      const existingScores = cache.readQuery({ query: GET_SCORES });
+      cache.writeQuery({
+        query: GET_SCORES,
+        data: {
+          scores: [addScore, ...existingScores.scores],
+        },
+      });
+    }
+  }
+  );
   const { data, loading, error } = useQuery(GET_SCORES);
 
   const [deleteScore] = useMutation(DELETE_SCORE, {
-    refetchQueries: ["GetScores"], // Optional: ensures UI updates
+    update(cache, { data: { deleteScore } }) {
+      const existingScores = cache.readQuery({ query: GET_SCORES });
+      const newScores = existingScores.scores.filter(
+        (score) => score.id !== deleteScore.id
+      )
+      cache.writeQuery({
+        query: GET_SCORES,
+        data: { scores: newScores },
+      })
+    }
+    //refetchQueries: ["GetScores"], // Optional: ensures UI updates but with 2 network calls, more traffic
   });
 
 
