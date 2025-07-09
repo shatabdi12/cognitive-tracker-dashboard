@@ -1,27 +1,23 @@
 //# Resolver functions to handle requests
 
-const scores = [];  // Temporary in-memory data
-let nextId = scores.length + 1;
+const Score = require("../models/Score")
 
 const resolvers = {
   Query: {
-    scores: () => scores,
+    scores: async() => {
+      return await Score.find();
+    },
   },
   Mutation: {
-    addScore: (_, { score, date }) => {
-      const newScore = {
-        id: String(nextId++),
+    addScore: async (_, { score, date }) => {
+      const newScore = new Score({
         score,
         date,
-      };
-      scores.push(newScore);
-      return newScore;
+      });
+      return await newScore.save();
     },
-    deleteScore: (_, { id }) => {
-      const index = scores.findIndex((score) => score.id === id);
-      if (index === -1) return null;
-      const deleted = scores.splice(index, 1)[0];
-      return deleted;
+    deleteScore: async (_, { id }) => {
+      return await Score.findByIdAndDelete(id);
     }    
   },
 };
