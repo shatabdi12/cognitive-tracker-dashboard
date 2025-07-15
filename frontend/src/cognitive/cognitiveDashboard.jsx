@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import Tests from "./Tests";
 import Patients from "./Patients";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 export default function CognitiveDashboard() {
   const [activeTab, setActiveTab] = useState("Overview");
@@ -11,9 +12,13 @@ export default function CognitiveDashboard() {
   return (
   <Router>
     <div className="flex">
+    <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 rounded-2xl shadow">
+    <ThemeToggle>
       <aside className="w-64 bg-gray-900 text-white p-6">
         <Nav />
       </aside>
+      </ThemeToggle>
+      </div>
 
       <main className="flex-1 p-8 bg-gray-50 overflow-y-auto">
         <h1 className="flex text-4xl font-bold mb-8">
