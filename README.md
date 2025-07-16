@@ -1,16 +1,137 @@
-# cognitive-tracker-dashboard
+# 🧠 Cognitive Tracker Dashboard
+A sleek, responsive dashboard to track cognitive test scores, built with:
 
-A frontend dashboard for a fictional cognitive assessment tool. The app will have a summary panel of test scores, user profiles, and test details, pulling data via REST/GraphQL.
+React + Vite
 
-# React + Vite
+TailwindCSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Apollo Client & GraphQL
 
-Currently, two official plugins are available:
+Node.js + Express + Apollo Server
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+MongoDB + Mongoose
 
-## Expanding the ESLint configuration
+Zustand (for theme management)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Features
+📊 Visualize scores with Line and Radar Charts
+
+📝 Add and delete test scores (stored in MongoDB)
+
+📅 Test History list
+
+🌙 Light/Dark theme toggle (managed with Zustand)
+
+🧠 Responsive UI with TailwindCSS
+
+⚡ Real-time updates via Apollo Cache
+
+## 📁 Project Structure
+```bash
+Copy
+Edit
+.
+├── backend
+│   ├── models/              # Mongoose schemas
+│   ├── resolvers/           # GraphQL resolvers
+│   ├── schemas/             # GraphQL typeDefs
+│   ├── src/index.js         # Express + Apollo Server entry
+│   └── .env                 # MongoDB connection string
+├── frontend
+│   ├── components/          # ThemeToggle, Dashboard, Tests, etc.
+│   ├── apolloClient.js      # Apollo Client setup
+│   ├── store/themeStore.js  # Zustand for theme
+│   └── main.jsx             # React + ApolloProvider entry
+```
+
+## 🧑‍💻 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/cognitive-dashboard.git
+cd cognitive-dashboard
+```
+
+### 2. Set up the backend
+```bash
+cd backend
+npm install
+```
+
+Create a .env file inside /backend with:
+```bash
+MONGO_URI=your_mongodb_connection_string
+```
+
+Start the backend:
+```bash
+npm run dev
+```
+
+### 3. Set up the frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## ⚙️ API Overview
+Query: scores
+```bash
+query {
+  scores {
+    id
+    score
+    date
+  }
+}
+```
+
+Mutation: addScore
+```bash
+mutation {
+  addScore(score: 85, date: "2025-07-15") {
+    id
+    score
+    date
+  }
+}
+```
+
+Mutation: deleteScore
+```bash
+mutation {
+  deleteScore(id: "1") {
+    id
+  }
+}
+```
+
+## 🌗 Theme Toggle with Zustand
+Zustand is used to persist and manage light/dark mode across components.
+```bash
+import { useThemeStore } from '../store/themeStore';
+const { theme, toggleTheme } = useThemeStore();
+```
+Try it out in the UI — theme updates instantly.
+
+## 📌 Tech Stack
+Frontend: React, TailwindCSS, Apollo Client, Zustand
+
+Backend: Node.js, Express, Apollo Server, Mongoose
+
+Database: MongoDB Atlas (or local)
+
+Charts: Recharts
+
+## ✅ To-Do
+Authentication (JWT)
+
+Role-based views (Admin/Patient)
+
+Analytics insights page
+
+Better score validation
+
+## 📄 License
+MIT — feel free to use and modify **in your own projects**.
