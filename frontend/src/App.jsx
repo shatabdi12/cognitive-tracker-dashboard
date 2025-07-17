@@ -1,12 +1,12 @@
-import "./App.css";
-import CognitiveDashboard from "./cognitive/cognitiveDashboard";
-import useThemeStore from "./store/themeStore";
+import './App.css';
+import CognitiveDashboard from './cognitive/cognitiveDashboard.jsx';
+import useThemeStore from './store/themeStore';
 
 function App() {
-const { theme } = useThemeStore();
+  const { theme } = useThemeStore();
 
   return (
-    <div className={theme === 'dark' ? 'dark' : ''} >
+    <div className={theme === 'dark' ? 'dark' : ''}>
       <CognitiveDashboard></CognitiveDashboard>
     </div>
   );

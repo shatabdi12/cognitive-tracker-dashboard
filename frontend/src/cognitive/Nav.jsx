@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Nav() {
   return (
@@ -10,7 +10,7 @@ export default function Nav() {
           to="/"
           className={({ isActive }) =>
             `block px-4 py-2 rounded hover:bg-gray-200 ${
-              isActive ? "bg-blue-500 text-white" : "text-gray-700"
+              isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
             }`
           }
         >
@@ -20,7 +20,7 @@ export default function Nav() {
           to="/tests"
           className={({ isActive }) =>
             `block px-4 py-2 rounded hover:bg-gray-200 ${
-              isActive ? "bg-blue-500 text-white" : "text-gray-700"
+              isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
             }`
           }
         >
@@ -30,7 +30,7 @@ export default function Nav() {
           to="/patients"
           className={({ isActive }) =>
             `block px-4 py-2 rounded hover:bg-gray-200 ${
-              isActive ? "bg-blue-500 text-white" : "text-gray-700"
+              isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
             }`
           }
         >

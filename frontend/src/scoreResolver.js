@@ -19,7 +19,9 @@ export default function ScoreRevolver() {
   return (
     <ul>
       {data.getScores.map(score => (
-        <li key={score.id}>{score.date}: {score.score}</li>
+        <li key={score.id}>
+          {score.date}: {score.score}
+        </li>
       ))}
     </ul>
   );
