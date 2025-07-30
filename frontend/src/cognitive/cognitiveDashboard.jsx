@@ -12,7 +12,7 @@ export default function CognitiveDashboard() {
   return (
     <Router>
       <div className="flex">
-        <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 rounded-2xl shadow">
+        <div className="bg-blue-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 rounded-2xl shadow">
           <ThemeToggle>
             <aside className="w-64 bg-gray-900 text-white p-6">
               <Nav />
