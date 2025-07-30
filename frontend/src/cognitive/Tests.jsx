@@ -88,10 +88,10 @@ export default function Tests() {
         {loading && <p>Loading...</p>}
         {error && <p>Error loading scores</p>}
         <ul className="divide-y divide-gray-200">
-          {data?.scores.map(score => (
+          {data?.scores.map((score, index) => (
             <li key={score.id} className="py-2 flex justify-between items-center">
               <span>
-                Test {score.id} - {score.score}
+                Test {index + 1} - {score.score}
               </span>
               <button
                 onClick={() => deleteScore({ variables: { id: score.id } })}
