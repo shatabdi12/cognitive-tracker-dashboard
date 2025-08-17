@@ -48,7 +48,7 @@ export default function Dashboard() {
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-6 rounded-2xl shadow">
-          <h3 className="text-xl font-semibold text-gray-600">📊 Avg Score</h3>
+          <h2 className="text-xl font-semibold text-gray-600">📊 Avg Score</h2>
           <p className="text-4xl font-bold mt-2">
             {scores.length > 0 ? scores[0].score : 'Loading...'}
           </p>
@@ -60,14 +60,14 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="bg-white p-6 rounded-2xl shadow">
-          <h3 className="text-xl font-semibold text-gray-600">🏆 Highest Score</h3>
+          <h2 className="text-xl font-semibold text-gray-600">🏆 Highest Score</h2>
           <p className="text-4xl font-bold mt-2">94</p>
           <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
             <div className="bg-green-500 h-3 rounded-full" style={{ width: '94%' }}></div>
           </div>
         </div>
         <div className="bg-white p-6 rounded-2xl shadow">
-          <h3 className="text-xl font-semibold text-gray-600">📝 Tests Taken</h3>
+          <h2 className="text-xl font-semibold text-gray-600">📝 Tests Taken</h2>
           <p className="text-4xl font-bold mt-2">15</p>
           <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
             <div className="bg-purple-500 h-3 rounded-full" style={{ width: '75%' }}></div>

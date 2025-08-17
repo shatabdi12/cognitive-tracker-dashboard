@@ -7,7 +7,14 @@ function ThemeToggle({ children }) {
 
   return (
     <div className="px-4 py-2 mt-4 text-black dark:text-white rounded">
-      <span className="cursor-pointer" onClick={toggleTheme}>
+      <span
+        name="theme-toggle"
+        className="cursor-pointer"
+        role="button"
+        tabIndex={0}
+        aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        onClick={toggleTheme}
+      >
         {theme === 'light' ? <AiFillBulb /> : <AiOutlineBulb />}
       </span>
       {children}

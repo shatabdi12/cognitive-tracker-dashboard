@@ -47,8 +47,10 @@ export default function CognitiveDashboard() {
 
           {activeTab === 'Insights' && (
             <div className="bg-white p-6 rounded-2xl shadow mb-8">
-              <h2 className="text-2xl font-semibold mb-4">🔍 Insights Coming Soon...</h2>
-              <p className="text-gray-600">
+              <h2 aria-label="Insights Coming Soon" className="text-2xl font-semibold mb-4">
+                🔍 Insights Coming Soon...
+              </h2>
+              <p aria-label="Insights Coming Soon Description" className="text-gray-600">
                 This section will feature advanced analytics and patterns.
               </p>
             </div>

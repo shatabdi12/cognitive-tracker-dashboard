@@ -90,7 +90,7 @@ export default function Tests() {
         <ul className="divide-y divide-gray-200">
           {data?.scores.map((score, index) => (
             <li key={score.id} className="py-2 flex justify-between items-center">
-              <span>
+              <span role="text">
                 Test {index + 1} - {score.score}
               </span>
               <button
@@ -106,25 +106,31 @@ export default function Tests() {
 
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-2xl font-bold mb-6">➕ Add New Score</h2>
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" role="form" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Score</label>
+            <label aria-label="Score" className="block text-gray-700 font-medium mb-1">
+              Score
+            </label>
             <input
               type="number"
               name="score"
               value={formData.score}
               onChange={handleChange}
               className="w-full border border-gray-300 px-4 py-2 rounded-lg"
+              aria-label="Score"
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Date</label>
+            <label aria-label="Date" className="block text-gray-700 font-medium mb-1">
+              Date
+            </label>
             <input
               type="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
               className="w-full border border-gray-300 px-4 py-2 rounded-lg"
+              aria-label="Date"
             />
           </div>
           <button

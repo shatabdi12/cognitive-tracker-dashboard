@@ -6,36 +6,42 @@ export default function Nav() {
     <div className="navbar">
       <h2 className="text-2xl font-bold mb-6">Tracker</h2>
       <ul className="nav-links">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `block px-4 py-2 rounded hover:bg-gray-200 ${
-              isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
-            }`
-          }
-        >
-          Dashboard
-        </NavLink>
-        <NavLink
-          to="/tests"
-          className={({ isActive }) =>
-            `block px-4 py-2 rounded hover:bg-gray-200 ${
-              isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
-            }`
-          }
-        >
-          Tests
-        </NavLink>
-        <NavLink
-          to="/patients"
-          className={({ isActive }) =>
-            `block px-4 py-2 rounded hover:bg-gray-200 ${
-              isActive ? 'bg-blue-500 text-white' : 'text-gray-700'
-            }`
-          }
-        >
-          Patients
-        </NavLink>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500  ${
+                isActive ? 'bg-blue-700 text-white' : 'text-white hover:bg-gray-700'
+              }`
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/tests"
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500  ${
+                isActive ? 'bg-blue-700 text-white' : 'text-white hover:bg-gray-700'
+              }`
+            }
+          >
+            Tests
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/patients"
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                isActive ? 'bg-blue-700 text-white' : 'text-white hover:bg-gray-700'
+              }`
+            }
+          >
+            Patients
+          </NavLink>
+        </li>
       </ul>
     </div>
   );
