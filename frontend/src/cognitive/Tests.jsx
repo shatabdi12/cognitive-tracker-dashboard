@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import React from 'react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const ADD_SCORE = gql`
   mutation AddScore($score: Int!, $date: String!) {
@@ -74,10 +75,11 @@ export default function Tests() {
           date,
         },
       });
-      alert('Score added!');
+      toast.success('Score added!');
       setFormData({ score: '', date: '' });
     } catch (err) {
       console.error('Error adding score:', err);
+      toast.error('Failed to add score');
     }
   };
 
