@@ -6,8 +6,10 @@ import Patients from './Patients.jsx';
 import Tests from './Tests.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 
+const TABS = ['Overview', 'History', 'Insights'];
+
 export default function CognitiveDashboard() {
-  const [activeTab, setActiveTab] = useState('Overview');
+  const [activeTab, setActiveTab] = useState(TABS[0]);
 
   return (
     <Router>
@@ -23,7 +25,7 @@ export default function CognitiveDashboard() {
         <main className="flex-1 p-8 bg-gray-50 overflow-y-auto">
           <h1 className="flex text-4xl font-bold mb-8">🧠 Cognitive Tracker Dashboard</h1>
           <div className="mb-8 flex space-x-4 border-b pb-4">
-            {['Overview', 'History', 'Insights'].map(tab => (
+            {TABS.map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
