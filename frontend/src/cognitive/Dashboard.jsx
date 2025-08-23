@@ -33,16 +33,10 @@ export default function Dashboard() {
     score: score.score,
   }));
 
-  // const lineData = [
-  //   { date: "Mon", score: 72 },
-  //   { date: "Tue", score: 85 },
-  //   { date: "Wed", score: 78 },
-  //   { date: "Thu", score: 90 },
-  //   { date: "Fri", score: 80 },
-  // ];
-
-  // Example: Assuming the first score object has properties like 'score' and 'date'
-  //  const lineData = scores.map((score) => ({ date: score.date, score: score.score }));
+  const avgScore =
+    scores.length > 0 ? scores.reduce((acc, s) => acc + s.score, 0) / scores.length : 0;
+  const highestScore = scores.length > 0 ? Math.max(...scores.map(s => s.score)) : 0;
+  const testsTaken = scores.length;
 
   return (
     <>
@@ -50,27 +44,30 @@ export default function Dashboard() {
         <div className="bg-white p-6 rounded-2xl shadow">
           <h2 className="text-xl font-semibold text-gray-600">📊 Avg Score</h2>
           <p className="text-4xl font-bold mt-2">
-            {scores.length > 0 ? scores[0].score : 'Loading...'}
+            {avgScore > 0 ? avgScore.toFixed(0) : <span className="text-gray-400">No Data</span>}
           </p>
           <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
-            <div
-              className="bg-blue-500 h-3 rounded-full"
-              style={{ width: `${scores.length > 0 ? scores[0].score : 0}%` }}
-            ></div>
+            <div className="bg-blue-500 h-3 rounded-full" style={{ width: `${avgScore}%` }}></div>
           </div>
         </div>
         <div className="bg-white p-6 rounded-2xl shadow">
           <h2 className="text-xl font-semibold text-gray-600">🏆 Highest Score</h2>
-          <p className="text-4xl font-bold mt-2">94</p>
+          <p className="text-4xl font-bold mt-2">{highestScore}</p>
           <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
-            <div className="bg-green-500 h-3 rounded-full" style={{ width: '94%' }}></div>
+            <div
+              className="bg-green-500 h-3 rounded-full"
+              style={{ width: `${highestScore}%` }}
+            ></div>
           </div>
         </div>
         <div className="bg-white p-6 rounded-2xl shadow">
           <h2 className="text-xl font-semibold text-gray-600">📝 Tests Taken</h2>
-          <p className="text-4xl font-bold mt-2">15</p>
+          <p className="text-4xl font-bold mt-2">{testsTaken}</p>
           <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
-            <div className="bg-purple-500 h-3 rounded-full" style={{ width: '75%' }}></div>
+            <div
+              className="bg-purple-500 h-3 rounded-full"
+              style={{ width: `${testsTaken}%` }}
+            ></div>
           </div>
         </div>
       </div>
